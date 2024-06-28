@@ -66,19 +66,18 @@
 
 ### Project Structure
 
-- /workoaiassignment \n
+- /workoaiassignment
 - ├── /src
-- │ ├── /app // Application entry point
-- │ ├── /config // Configuration files (e.g., database, environment)
-- │ ├── /controllers // Controller layer (handles HTTP requests)
-- │ ├── /dao // Data Access Object layer (interacts with database)
-- │ ├── /middlewares // Middleware functions (e.g., authentication,errorhandling)
-- │ ├── /models // Data models (e.g., Mongoose schemas)
-- │ ├── /router // Express routers
-- │ ├── /schemas // Joi validation schemas
-- │ ├── /services // Business logic layer (service classes)
-- │ └── /utils // Utility functions
-- │
+- │   ├── /app // Application entry point
+- │   ├── /config // Configuration files (e.g., database, environment)
+- │   ├── /controllers // Controller layer (handles HTTP requests)
+- │   ├── /dao // Data Access Object layer (interacts with database)
+- │   ├── /middlewares // Middleware functions (e.g., authentication,errorhandling)
+- │   ├── /models // Data models (e.g., Mongoose schemas)
+- │   ├── /router // Express routers
+- │   ├── /schemas // Joi validation schemas
+- │   ├── /services // Business logic layer (service classes)
+- │   └── /utils // Utility functions
 - ├── .env // Environment variables
 - ├── .gitignore
 - ├── package.json
