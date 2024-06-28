@@ -1,7 +1,7 @@
-import {UserController} from '@controller/user-controller';
-import {AuthMiddleware} from '@middlewares/auth';
 import {Router} from 'express';
 import {injectable} from 'tsyringe';
+import {UserController} from '../controller/user-controller';
+import {AuthMiddleware} from '../middlewares/auth';
 
 @injectable()
 export default class UserRouter {

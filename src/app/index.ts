@@ -1,10 +1,10 @@
 import express, {Express, NextFunction, Request, Response} from 'express';
-import {singleton} from 'tsyringe';
+import {injectable, singleton} from 'tsyringe';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
-import errorMiddleware from '@middlewares/error-middleware';
-import AppRouter from '@router';
+import errorMiddleware from '../middlewares/error-middleware';
+import AppRouter from '../router';
 
 @singleton()
 class ExpressApp {
@@ -29,6 +29,10 @@ class ExpressApp {
         this.app.listen(process.env.PORT, () => {
             console.log(`Server is running on port ${process.env.PORT}`);
         });
+        return this.app;
+    }
+    public getApp() {
+        this.app.use('/worko', this.appRouter.getRouter());
         return this.app;
     }
     private applyMiddlewares() {

@@ -4,8 +4,8 @@
 
 1. **Node.js Project Setup**
 
-    - Clone the repository: `git clone https://github.com/asadansari8840/workoAssignment.git` or extract the zip file from url : `www.needtoadd.google.url.com`
-    - Install dependencies: `npm install`
+    - Clone the repository: `git clone https://github.com/asadansari8840/workoAssignment.git` or download and extract the zip file from url : `https://drive.google.com/file/d/1y9iTgDwcglb_s9O8rE3mldNlNIkWyZ-n/view?usp=drivesdk`
+    - Install dependencies: `npm install` Ensure you are in workoAssignment folder if not open cmd  type `cd /workoAssignment`.
 
 2. **Database Configuration**
 
@@ -35,7 +35,7 @@
 ## Specifications
 
 -   **Node.js**: Backend API development
--   **Architecture**: MVC (Model-View-Controller) with DAO ( Data Access Object) code pattern.
+-   **Architecture**: MVC (Model-View-Controller) with DAO ( Data Access Object) code pattern with dependency injection.
 -   **Modules**: Express, Joi, dotenv
 -   **Database**: MongoDB (NoSQL)
 -   **Authentication**: Basic Authentication for APIs
@@ -44,14 +44,13 @@
 
 ### API Endpoints
 
-- **GET /worko/user/list**: List all users *(Requires Authentication and Admin privileges)*
-- **GET /worko/user/:userId**: Get user details by userId *(Requires Authentication)*
-- **POST /worko/user/create**: Create a new user
-- **PUT /worko/user/update/:userId**: Update user details *(Requires Authentication)*
-- **DELETE /worko/user/delete/:userId**: Soft delete user *(Requires Authentication)*
-- **POST /worko/user/login**: Login user
-- **GET /worko/user/logout**: Logout user
-
+-   **GET /worko/user/list**: List all users _(Requires Authentication and Admin privileges)_
+-   **GET /worko/user/:userId**: Get user details by userId _(Requires Authentication)_
+-   **POST /worko/user/create**: Create a new user
+-   **PUT /worko/user/update/:userId**: Update user details _(Requires Authentication)_
+-   **DELETE /worko/user/delete/:userId**: Soft delete user _(Requires Authentication)_
+-   **POST /worko/user/login**: Login user
+-   **GET /worko/user/logout**: Logout user
 
 ### Authentication
 
@@ -66,20 +65,20 @@
 
 ### Project Structure
 
-- /workoaiassignment
-- ├── /src
-- │   ├── /app // Application entry point
-- │   ├── /config // Configuration files (e.g., database, environment)
-- │   ├── /controllers // Controller layer (handles HTTP requests)
-- │   ├── /dao // Data Access Object layer (interacts with database)
-- │   ├── /middlewares // Middleware functions (e.g., authentication,errorhandling)
-- │   ├── /models // Data models (e.g., Mongoose schemas)
-- │   ├── /router // Express routers
-- │   ├── /schemas // Joi validation schemas
-- │   ├── /services // Business logic layer (service classes)
-- │   └── /utils // Utility functions
-- ├── .env // Environment variables
-- ├── .gitignore
-- ├── package.json
-- ├── README.md // Project documentation
-- └── tsconfig.json
+-   /workoaiassignment
+-   ├── /src
+-   │ ├── /app // Application entry point
+-   │ ├── /config // Configuration files (e.g., database, environment)
+-   │ ├── /controllers // Controller layer (handles HTTP requests)
+-   │ ├── /dao // Data Access Object layer (interacts with database)
+-   │ ├── /middlewares // Middleware functions (e.g., authentication,errorhandling)
+-   │ ├── /models // Data models (e.g., Mongoose schemas)
+-   │ ├── /router // Express routers
+-   │ ├── /schemas // Joi validation schemas
+-   │ ├── /services // Business logic layer (service classes)
+-   │ └── /utils // Utility functions
+-   ├── .env // Environment variables
+-   ├── .gitignore
+-   ├── package.json
+-   ├── README.md // Project documentation
+-   └── tsconfig.json

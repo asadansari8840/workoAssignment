@@ -21,6 +21,7 @@ export interface UserDocument extends Document {
     passwordResetTokenExpire: Date | null;
     generateAccessToken: () => string;
     generateRefreshToken: () => string;
+    hashPassword: (user_entered_password: string) => Promise<string>;
     comparePasswordHash: (user_entered_password: string, hashed_password: string) => Promise<boolean>;
     generateResetPasswordToken: () => string;
 }
@@ -99,7 +100,7 @@ const userSchema = new Schema<UserDocument>(
 
 // Pre-save hook to hash password if user signs up locally
 userSchema.pre<UserDocument>('save', async function (next) {
-    if (this.provider === 'local' && this.isModified('password')) {
+    if (this.provider !== 'google_sso' && this.isModified('password')) {
         try {
             const hashedPassword = await bcrypt.hash(this.password, 10);
             this.password = hashedPassword;
@@ -112,6 +113,11 @@ userSchema.pre<UserDocument>('save', async function (next) {
         next();
     }
 });
+
+userSchema.methods.hashPassword = async function (user_entered_password: string): Promise<string> {
+    const hashedPassword = await bcrypt.hash(user_entered_password, 10);
+    return hashedPassword;
+};
 
 // Method to generate access token
 userSchema.methods.generateAccessToken = function (): string {

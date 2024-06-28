@@ -1,9 +1,10 @@
-import UserDAO from '@dao/user-dao';
-import {validateUpdateUserData, validateUser} from '@schemas/user-schema';
-import catchAsyncError from '@utils/catch-async-errors';
-import ErrorHandler from '@utils/error-handler';
-import {sendUser} from '@utils/send-user';
+import 'reflect-metadata';
 import {injectable} from 'tsyringe';
+import {sendUser} from '../utils/send-user';
+import ErrorHandler from '../utils/error-handler';
+import catchAsyncError from '../utils/catch-async-errors';
+import {validateUpdateUserData, validateUser} from '../schemas/user-schema';
+import UserDAO from '../dao/user-dao';
 
 @injectable()
 export class UserController {
@@ -27,6 +28,7 @@ export class UserController {
         });
     });
     public getUserByUserId = catchAsyncError(async (req, res, next) => {
+        console.log("From single user details")
         const userId = req.params.userId;
         if (!userId) {
             return next(new ErrorHandler('User id missing', 404, true));
@@ -37,14 +39,14 @@ export class UserController {
             data: {
                 user,
             },
-            message: 'User details fetced successfully',
+            message: 'User details fetched successfully',
         });
     });
     public createUser = catchAsyncError(async (req, res, next) => {
         const {userData} = req.body;
         const validUserData = await validateUser(userData);
         const {user} = await this.userDao.createUser(validUserData);
-        sendUser(user, res, 'User created successfully');
+        sendUser(user, res, 'User created successfully', true);
     });
 
     public updateUser = catchAsyncError(async (req, res, next) => {

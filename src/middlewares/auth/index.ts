@@ -1,7 +1,7 @@
 import {injectable} from 'tsyringe';
 import {verify} from 'jsonwebtoken';
 import {NextFunction, Request, Response} from 'express';
-import ErrorHandler from '@utils/error-handler';
+import ErrorHandler from '../../utils/error-handler';
 
 @injectable()
 export class AuthMiddleware {
@@ -11,7 +11,7 @@ export class AuthMiddleware {
         if (!accessToken) {
             return next(new ErrorHandler('Unauthenticated user', 401, true));
         }
-        const token = verify(accessToken, process.env.ACCESS_TOKEN_JWT_PRIVATE_KEY!) as any;
+        const token = verify(accessToken, process.env.ACCESS_TOKEN_SECRET!) as any;
         if (!token) {
             return next(new ErrorHandler('Unauthenticated user', 401, true));
         }

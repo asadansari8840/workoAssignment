@@ -1,4 +1,3 @@
-import {UserDocument} from '@models/user-model';
 import {Response} from 'express';
 
 /**
@@ -8,7 +7,7 @@ import {Response} from 'express';
  * @param resMessage Any response message want to send to the client
  * @param notify Notification boolean to notify user on the client side.
  */
-export const sendUser = (user: UserDocument, res: Response, resMessage: string, notify: boolean = false, withoutCookie = false) => {
+export const sendUser = (user: any, res: Response, resMessage: string, notify: boolean = false, withoutCookie = false) => {
     const accessToken = user.generateAccessToken();
     const refreshToken = user.generateRefreshToken();
 

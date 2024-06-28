@@ -1,5 +1,5 @@
-import ErrorHandler from '@utils/error-handler';
 import Joi from 'joi';
+import ErrorHandler from '../utils/error-handler';
 
 /**
  * Schema for validation of user on signup
@@ -35,7 +35,7 @@ const userSchema = Joi.object({
     }),
     googleId: Joi.string().allow(null),
     isVerified: Joi.boolean().default(false),
-    isActive: Joi.boolean().default(false),
+    isActive: Joi.boolean().default(true),
 });
 
 /**

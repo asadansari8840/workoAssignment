@@ -1,6 +1,6 @@
-import UserModel, {UserDocument} from '@models/user-model';
-import ErrorHandler from '@utils/error-handler';
 import {injectable} from 'tsyringe';
+import ErrorHandler from '../utils/error-handler';
+import UserModel from '../models/user-model';
 
 @injectable()
 class UserDAO {
@@ -37,7 +37,8 @@ class UserDAO {
         try {
             const isAlreadyExists = await UserModel.findOne({email: userData.email});
             if (isAlreadyExists && !isAlreadyExists.isActive) {
-                const user = await UserModel.findByIdAndUpdate(isAlreadyExists._id, {isActive: true, password: userData.password}, {new: true});
+                const hashedPassword = await isAlreadyExists.hashPassword(userData.password);
+                const user = await UserModel.findByIdAndUpdate(isAlreadyExists._id, {isActive: true, password: hashedPassword}, {new: true});
                 if (!user) {
                     throw new ErrorHandler('Something went wrong while sign in', 400, true);
                 }
@@ -75,9 +76,6 @@ class UserDAO {
     public loginUser = async (email: string, user_entered_password: string) => {
         try {
             const user = await UserModel.findOne({email, isActive: true}).select('+password');
-            if (!user) {
-                throw new ErrorHandler('Invalid email or password', 400, true);
-            }
             if (!user || !(await user.comparePasswordHash(user_entered_password, user.password))) {
                 throw new ErrorHandler('Invalid email or password', 400, true);
             }

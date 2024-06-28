@@ -1,5 +1,5 @@
-import ErrorHandler from '@utils/error-handler';
 import {Request, Response, NextFunction} from 'express';
+import ErrorHandler from '../../utils/error-handler';
 
 type errorTP = {
     statusCode: number;
